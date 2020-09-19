@@ -13,7 +13,7 @@ import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import {ChromePicker} from "react-color";
 import Button from '@material-ui/core/Button';
 import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
-import { arrayMove } from 'react-sortable-hoc';
+import arrayMove from 'array-move';
 import DraggableColorList from "./DraggableColorList";
 
 const drawerWidth = 350;
@@ -82,7 +82,7 @@ class NewColorPaletteForm extends Component {
         this.state = {
             open: false,
             background: "teal",
-            colors: [],
+            colors: props.paletteList[0].colors,
             colorName: "",
             paletteName: ""
         }
@@ -92,6 +92,8 @@ class NewColorPaletteForm extends Component {
         this.addPalette = this.addPalette.bind(this);
         this.removeColor = this.removeColor.bind(this);
         this.onSortEnd = this.onSortEnd.bind(this);
+        this.generateRandomColor = this.generateRandomColor.bind(this);
+        this.clearPalette = this.clearPalette.bind(this);
     }
 
   handleDrawerOpen = () => {
@@ -130,6 +132,19 @@ class NewColorPaletteForm extends Component {
       })
 
       this.setState({colors: updatedColors});
+  }
+
+  generateRandomColor(){
+     var allColors = this.props.paletteList.map(function(palette){
+          return palette.colors;
+     }).flat();
+      var randIdx = Math.floor(Math.random() * allColors.length);
+      var randColor = allColors[randIdx];
+      this.setState({colors: [...this.state.colors, randColor]});
+  }
+
+  clearPalette(){
+    this.setState({colors: []});
   }
 
   componentDidMount() {
@@ -224,8 +239,8 @@ onSortEnd({oldIndex, newIndex}){
 
            <Typography variant="h4">Design Your Palette</Typography>
            <div>
-           <Button variant="contained" color="secondary">CLEAR PALETTE</Button>
-           <Button variant="contained" color="primary">RANDOM COLOR</Button>
+           <Button variant="contained" color="secondary" onClick={this.clearPalette}>CLEAR PALETTE</Button>
+           <Button variant="contained" color="primary" onClick={this.generateRandomColor}>RANDOM COLOR</Button>
            </div>
 
           <ChromePicker color={background} onChangeComplete={this.handleColorChange}/>
