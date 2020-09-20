@@ -193,7 +193,7 @@ class NewColorPaletteForm extends Component {
         >
           <div className={classes.drawerHeader} />
             
-          <DraggableColorList colors={colors} removeColor={this.removeColor} onSortEnd={this.onSortEnd} axis="xy"/>
+          <DraggableColorList colors={colors} removeColor={this.removeColor} onSortEnd={this.onSortEnd} axis="xy" distance={20}/>
 
         </main>
       </div>
