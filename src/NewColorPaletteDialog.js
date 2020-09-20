@@ -13,7 +13,7 @@ class NewColorPaletteDialog extends Component {
     constructor(props){
         super(props);
         this.state = {
-            open: false,
+            open: true,
             paletteName: ""
         }
 
@@ -48,9 +48,7 @@ class NewColorPaletteDialog extends Component {
         var {addPalette} = this.props;
         return (
             <div>
-            <Button variant="outlined" color="primary" onClick={this.handleOpen}>
-               Add Palette
-            </Button>
+            
             <Dialog open={open} onClose={this.handleClose} aria-labelledby="form-dialog-title">
               <DialogTitle id="form-dialog-title">Choose a Palette Name</DialogTitle>
 

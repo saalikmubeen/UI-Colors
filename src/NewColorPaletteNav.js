@@ -14,7 +14,17 @@ import NewColorPaletteDialog from "./NewColorPaletteDialog";
 const styles = {
     navButtons: {
         display: "flex",
-        alignItems: "center"
+        alignItems: "center",
+        marginRight: "1rem",
+
+        "& Button": {
+            margin: "0 0.5rem"
+        },
+
+        "& a": {
+            textDecoration: "none",
+            color: "white",
+        }
     }
 }
 
@@ -23,27 +33,24 @@ class NewColorPaletteNav extends Component {
     constructor(props){
         super(props);
         this.state = {
-            paletteName: ""
+            paletteName: "",
+            dialogOpen: false
         }
         this.handleTextChange = this.handleTextChange.bind(this);
+        this.openDialog = this.openDialog.bind(this);
     }
 
     handleTextChange(evt){
         this.setState({[evt.target.name]: evt.target.value})
     }
 
-    // componentDidMount(){
-      
-    //     ValidatorForm.addValidationRule('isPaletteNameUnique', (value) => {
-    //         return this.props.paletteList.every((palette) => {
-    //             return palette.paletteName !== value.toLowerCase();
-    //         })
-    //     });
-    // }
+    openDialog(){
+        this.setState({dialogOpen: true});
+    }
 
     render() {
         var {classes, open, handleDrawerOpen, addPalette, paletteList} = this.props;
-        var {paletteName} = this.state;
+        var {paletteName, dialogOpen} = this.state;
         return (
         
             
@@ -71,7 +78,11 @@ class NewColorPaletteNav extends Component {
 
         <div className={classes.navButtons}>
 
-            <NewColorPaletteDialog paletteList={paletteList} addPalette={addPalette}/>
+            {dialogOpen && <NewColorPaletteDialog paletteList={paletteList} addPalette={addPalette}/>}
+
+            <Button variant="contained" color="primary" onClick={this.openDialog}>
+               Save
+            </Button>
 
             <Button variant="contained" color="secondary">
                  <Link to="/">Go Back</Link>
