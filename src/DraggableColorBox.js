@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {withStyles} from "@material-ui/styles";
 import DeleteIcon from '@material-ui/icons/Delete';
 import {SortableElement} from 'react-sortable-hoc';
+import chroma from 'chroma-js';
 
 var styles = {
     root: {
@@ -36,7 +37,8 @@ var styles = {
         left: "0px",
         bottom: "0px",
         padding: "10px",
-        color: "rgba(0, 0, 0, 0.5)",
+        color: (props) => chroma(props.background).luminance() <=0.08
+                          ? "rgba(225, 225, 225, 0.9)" : "rgba(0, 0, 0, 0.6)",
         letterSpacing: "1px",
         textTransform: "uppercase",
         fontSize: "12px",

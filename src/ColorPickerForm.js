@@ -43,11 +43,7 @@ class ColorPickerForm extends Component {
 
   handleSubmit(){
       this.props.addColor(this.state.background, this.state.colorName);
-
-      var rand1 = Math.floor(Math.random() * 225);
-      var rand2 = Math.floor(Math.random() * 200);
-      var rand3 = Math.floor(Math.random() * 100);
-      this.setState({colorName: "", background: `rgb(${rand1}, ${rand2},${rand3})`});
+      this.setState({colorName: ""});
   }
 
      componentDidMount() {
@@ -74,6 +70,7 @@ class ColorPickerForm extends Component {
                   <ValidatorForm
                   ref="form"
                   onSubmit={this.handleSubmit}
+                  instantValidate={false}
                   onError={errors => console.log(errors)}
                   >
                   <TextValidator
