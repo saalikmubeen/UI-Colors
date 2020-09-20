@@ -30,7 +30,9 @@ class NewColorPaletteDialog extends Component {
     }
 
     handleClose(){
-        this.setState({open: false, emojiVisible: false});
+        // this.setState({open: false, emojiVisible: false});
+        this.setState({emojiVisible: false});
+        this.props.closeDialog();
     }
 
     handleTextChange(evt){

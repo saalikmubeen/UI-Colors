@@ -36,6 +36,7 @@ class NewColorPaletteNav extends Component {
         }
         this.handleTextChange = this.handleTextChange.bind(this);
         this.openDialog = this.openDialog.bind(this);
+        this.closeDialog = this.closeDialog.bind(this);
     }
 
     handleTextChange(evt){
@@ -44,6 +45,10 @@ class NewColorPaletteNav extends Component {
 
     openDialog(){
         this.setState({dialogOpen: true});
+    }
+
+    closeDialog(){
+        this.setState({dialogOpen: false});
     }
 
     render() {
@@ -76,7 +81,7 @@ class NewColorPaletteNav extends Component {
 
         <div className={classes.navButtons}>
 
-            {dialogOpen && <NewColorPaletteDialog paletteList={paletteList} addPalette={addPalette}/>}
+            {dialogOpen && <NewColorPaletteDialog paletteList={paletteList} addPalette={addPalette} closeDialog={this.closeDialog}/>}
 
             <Button variant="contained" color="primary" onClick={this.openDialog}>
                Save
