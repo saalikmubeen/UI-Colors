@@ -4,6 +4,17 @@ import MiniPalette from "./MiniPalette";
 import { withStyles } from '@material-ui/core/styles';
 import bg from "./bg.svg";
 import {CSSTransition, TransitionGroup,} from 'react-transition-group';
+import Avatar from '@material-ui/core/Avatar';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import ListItemText from '@material-ui/core/ListItemText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Dialog from '@material-ui/core/Dialog';
+import { blue } from '@material-ui/core/colors';
+import {red} from '@material-ui/core/colors';
+import CheckIcon from '@material-ui/icons/Check';
+import CloseIcon from '@material-ui/icons/Close';
 
 var styles = {
     root: {
@@ -80,9 +91,36 @@ var styles = {
 }
 
 class PaletteList extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            open: false,
+            paletteId: ""
+        }
+
+        this.handleClose = this.handleClose.bind(this);
+        this.handleOpen = this.handleOpen.bind(this);
+        this.deletePalette = this.deletePalette.bind(this);
+    }
+
+    handleClose(){
+        this.setState({open: false, paletteId: ""});
+    }
+
+    handleOpen(id){
+        this.setState({open: true, paletteId: id});
+    }
+
+    deletePalette(){
+       this.props.deletePalette(this.state.paletteId);
+       this.handleClose();
+    }
+
+
     render() {
         var {paletteList, classes, history, deletePalette} = this.props; 
-        
+        var {open} = this.state;
+
         return (
             <div className={classes.root}>
               <div className={classes.container}>
@@ -91,15 +129,44 @@ class PaletteList extends Component {
                       <Link to="/palette/new">Create Palette</Link>
                   </nav>
                   <TransitionGroup className={classes.miniPalettes}>
-                       {paletteList.map(function(palette){
+                       {paletteList.map((palette) => {
                           return <CSSTransition key={palette.paletteName} timeout={500} classNames="fade">
-                                     <MiniPalette {...palette} key={palette.paletteName} history={history} deletePalette={deletePalette}/>
+                                     <MiniPalette {...palette} key={palette.paletteName} history={history}
+                                       //deletePalette={deletePalette} 
+                                        openDialog={this.handleOpen}/>
                                  </CSSTransition>
                        })}
                   </TransitionGroup>
              </div>
-            </div>
-        );
+             
+            <Dialog onClose={this.handleClose} aria-labelledby="simple-dialog-title" open={open}>
+            <DialogTitle id="simple-dialog-title">Delete This Palette?</DialogTitle>
+
+           <List>
+
+            <ListItem autoFocus button onClick={this.deletePalette}>
+            <ListItemAvatar>
+              <Avatar style={{backgroundColor: blue[100], color: blue[600]}}>
+                <CheckIcon />
+              </Avatar>
+            </ListItemAvatar>
+            <ListItemText primary="Delete" />
+           </ListItem>
+
+          <ListItem autoFocus button onClick={this.handleClose}>
+          <ListItemAvatar>
+            <Avatar style={{backgroundColor: red[100], color: red[600]}}>
+              <CloseIcon />
+            </Avatar>
+          </ListItemAvatar>
+          <ListItemText primary="Cancel" />
+          </ListItem>
+
+          </List>
+    </Dialog>
+
+    </div>
+    );
     }
 }
 
