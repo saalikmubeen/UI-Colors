@@ -27,6 +27,12 @@
     display: inline-block;
 }
 
+@media screen and (max-width: 900px) {
+    .slider {
+        width: 150px
+    }
+}
+
 .rc-slider-track {
     background-color: transparent;
 }

@@ -15,6 +15,18 @@ var styles = {
         "&:hover svg": {
             color: "white",
             transform: "scale(1.3)"
+        },
+        "@media screen and (max-width: 1200px)": {
+            width: "25%",
+            height: "20%"
+        },
+        "@media screen and (max-width: 900px)": {
+            width: "50%",
+            height: "10%"
+        },
+        "@media screen and (max-width: 768px)": {
+            width: "100%",
+            height: "5%"
         }
     },
 

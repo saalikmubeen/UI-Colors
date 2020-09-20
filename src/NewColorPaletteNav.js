@@ -44,7 +44,11 @@ const styles = theme => ({
         marginRight: "1rem",
 
         "& Button": {
-            margin: "0 0.5rem"
+            margin: "0 0.5rem",
+            "@media screen and (max-width: 576px)": {
+                padding: "0.3rem",
+                margin: "0 0.2rem"
+            }
         },
 
         "& a": {
