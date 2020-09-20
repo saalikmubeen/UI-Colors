@@ -17,7 +17,15 @@ var styles = {
       display: "flex",
       flexDirection: "column",
       alignItems: "flex-start",
-      flexWrap: "wrap"
+      flexWrap: "wrap",
+
+      "@media screen and (max-width: 1600px)": {
+          width: "80%"
+      },
+
+      "@media screen and (max-width: 576px)": {
+         width: "65%"
+     }
     },
 
     miniPalettes: {
@@ -25,7 +33,17 @@ var styles = {
          width: "100%",
          display: "grid",
          gridTemplateColumns: "repeat(3, 30%)",
-         gridGap: "5%" 
+         gridGap: "2rem",
+
+         "@media screen and (max-width: 900px)": {
+            gridTemplateColumns: "repeat(2, 50%)",
+            gridGap: "1.5rem"
+         },
+
+         "@media screen and (max-width: 576px)": {
+            gridTemplateColumns: "repeat(1, 100%)",
+            gridGap: "1rem"
+         }
     },
 
     nav: {
