@@ -19,31 +19,6 @@ const styles = theme => ({
   root: {
     display: "flex"
   },
-  appBar: {
-    transition: theme.transitions.create(["margin", "width"], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen
-    }),
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    height: "64px"
-  },
-  appBarShift: {
-    width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: drawerWidth,
-    transition: theme.transitions.create(["margin", "width"], {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen
-    })
-  },
-  menuButton: {
-    marginLeft: 12,
-    marginRight: 20
-  },
-  hide: {
-    display: "none"
-  },
   drawer: {
     width: drawerWidth,
     flexShrink: 0
@@ -180,7 +155,7 @@ class NewColorPaletteForm extends Component {
       <div className={classes.root}>
         
         <CssBaseline/>
-        <NewColorPaletteNav addPalette={this.addPalette} colors={colors} paletteList={paletteList} handleDrawerOpen={this.handleDrawerOpen} open={open} classes={classes}/>
+        <NewColorPaletteNav addPalette={this.addPalette} colors={colors} paletteList={paletteList} handleDrawerOpen={this.handleDrawerOpen} open={open}/>
 
         <Drawer
           className={classes.drawer}

@@ -7,10 +7,37 @@ import IconButton from "@material-ui/core/IconButton";
 import AddToPhotosIcon from '@material-ui/icons/AddToPhotos';
 import Button from '@material-ui/core/Button';
 import {Link} from "react-router-dom";
-import {withStyles} from "@material-ui/styles";
+import {withStyles} from "@material-ui/core/styles";
 import NewColorPaletteDialog from "./NewColorPaletteDialog";
 
-const styles = {
+const drawerWidth = 350;
+
+const styles = theme => ({
+    appBar: {
+    transition: theme.transitions.create(["margin", "width"], {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen
+        }),
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+        height: "64px"
+    },
+    appBarShift: {
+        width: `calc(100% - ${drawerWidth}px)`,
+        marginLeft: drawerWidth,
+        transition: theme.transitions.create(["margin", "width"], {
+            easing: theme.transitions.easing.easeOut,
+            duration: theme.transitions.duration.enteringScreen
+        })
+    },
+    menuButton: {
+        marginLeft: 12,
+        marginRight: 20
+    },
+    hide: {
+        display: "none"
+    },
     navButtons: {
         display: "flex",
         alignItems: "center",
@@ -25,7 +52,7 @@ const styles = {
             color: "white",
         }
     }
-}
+})
 
 
 class NewColorPaletteNav extends Component {
@@ -99,4 +126,4 @@ class NewColorPaletteNav extends Component {
     }
 }
 
-export default withStyles(styles) (NewColorPaletteNav);
+export default withStyles(styles, {withTheme: true}) (NewColorPaletteNav);
