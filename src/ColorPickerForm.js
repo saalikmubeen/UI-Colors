@@ -2,6 +2,24 @@ import React, { Component } from 'react';
 import {ChromePicker} from "react-color";
 import Button from '@material-ui/core/Button';
 import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
+import {withStyles} from "@material-ui/styles";
+
+const styles = {
+     chromePicker: {
+        width: "100% !important",
+        marginTop: "2rem"
+     },
+     addColorBtn: {
+        width: "100%",
+        padding: "1rem",
+        marginTop: "1rem",
+        fontSize: "1rem"
+     },
+     colorNameInput: {
+         width: "100%",
+         height: "70px"
+     }
+}
 
 class ColorPickerForm extends Component {
      constructor(props){
@@ -47,11 +65,11 @@ class ColorPickerForm extends Component {
     }
     
     render() {
-        var {paletteIsFull} = this.props;
+        var {paletteIsFull, classes} = this.props;
         var {background, colorName} = this.state;
         return (
             <div>
-                <ChromePicker color={background} onChangeComplete={this.handleColorChange}/>
+                <ChromePicker color={background} onChangeComplete={this.handleColorChange} className={classes.chromePicker}/>
 
                   <ValidatorForm
                   ref="form"
@@ -63,11 +81,14 @@ class ColorPickerForm extends Component {
                       onChange={this.handleTextChange}
                       name="colorName"
                       value={colorName}
+                      variant="filled"
+                      margin="normal"
                       validators={['required', 'isColorNameUnique', 'isColorUnique']}
                       errorMessages={['this field is required', 'Color with that color name already exists', 'Color already exists']}
+                      className={classes.colorNameInput}
                   />
                    <Button variant="contained" color="primary" 
-                      style={{backgroundColor: paletteIsFull ? "grey" : background}} type="submit" disabled={paletteIsFull}>
+                      style={{backgroundColor: paletteIsFull ? "grey" : background}} type="submit" disabled={paletteIsFull} className={classes.addColorBtn}>
                           {paletteIsFull ? "FULL PALETTE" : "ADD COLOR"}</Button>
                    </ValidatorForm>
             </div>
@@ -75,4 +96,4 @@ class ColorPickerForm extends Component {
     }
 }
 
-export default ColorPickerForm;
+export default withStyles(styles) (ColorPickerForm);
