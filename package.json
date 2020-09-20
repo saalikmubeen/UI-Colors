@@ -20,7 +20,8 @@
     "react-material-ui-form-validator": "^2.1.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
-    "react-sortable-hoc": "^1.11.0"
+    "react-sortable-hoc": "^1.11.0",
+    "react-transition-group": "^4.4.1"
   },
   "scripts": {
     "start": "react-scripts start",
