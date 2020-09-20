@@ -1,25 +1,28 @@
 import React, { Component } from 'react'
 import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
-import {Link} from "react-router-dom";
+import 'emoji-mart/css/emoji-mart.css'
+import { Picker } from 'emoji-mart'
 
 class NewColorPaletteDialog extends Component {
     constructor(props){
         super(props);
         this.state = {
             open: true,
-            paletteName: ""
+            paletteName: "",
+            emojiVisible: false
         }
 
         this.handleOpen = this.handleOpen.bind(this);
         this.handleClose = this.handleClose.bind(this);
         this.handleTextChange = this.handleTextChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.addEmoji = this.addEmoji.bind(this);
     }
     
     handleOpen(){
@@ -27,11 +30,21 @@ class NewColorPaletteDialog extends Component {
     }
 
     handleClose(){
-        this.setState({open: false})
+        this.setState({open: false, emojiVisible: false});
     }
 
     handleTextChange(evt){
         this.setState({[evt.target.name]: evt.target.value})
+    }
+
+    handleSubmit(){
+        this.setState({emojiVisible: true});
+        // this.props.addPalette(this.state.paletteName);
+    }
+
+    // adds emoji and saves the palette
+    addEmoji(emoji){
+        this.props.addPalette(this.state.paletteName, emoji.native);
     }
 
     componentDidMount(){
@@ -44,17 +57,22 @@ class NewColorPaletteDialog extends Component {
     }
 
     render() {
-        var {open, paletteName} = this.state;
-        var {addPalette} = this.props;
+        var {open, paletteName, emojiVisible} = this.state;
         return (
             <div>
             
-            <Dialog open={open} onClose={this.handleClose} aria-labelledby="form-dialog-title">
+            <Dialog open={emojiVisible} onClose={this.handleClose}> 
+              <DialogTitle id="form-dialog-title">Choose a Palette Emoji</DialogTitle>
+               <Picker set="apple" onSelect={this.addEmoji} title="Choose an Emoji"/>
+            </Dialog>
+            
+            <Dialog open={open} onClose={this.handleClose} aria-labelledby="form-dialog-title"> 
+
               <DialogTitle id="form-dialog-title">Choose a Palette Name</DialogTitle>
 
               <ValidatorForm
                 ref="form"
-                onSubmit={() => addPalette(paletteName)}
+                onSubmit={this.handleSubmit}
                 onError={errors => console.log(errors)}
                >
 
@@ -92,6 +110,5 @@ class NewColorPaletteDialog extends Component {
         )
     }
 }
-
 
 export default NewColorPaletteDialog;

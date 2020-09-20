@@ -6,9 +6,8 @@ import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import Button from '@material-ui/core/Button';
-import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 import {Link} from "react-router-dom";
-import {withStyles, withTheme} from "@material-ui/styles";
+import {withStyles} from "@material-ui/styles";
 import NewColorPaletteDialog from "./NewColorPaletteDialog";
 
 const styles = {
@@ -33,7 +32,6 @@ class NewColorPaletteNav extends Component {
     constructor(props){
         super(props);
         this.state = {
-            paletteName: "",
             dialogOpen: false
         }
         this.handleTextChange = this.handleTextChange.bind(this);
@@ -50,7 +48,7 @@ class NewColorPaletteNav extends Component {
 
     render() {
         var {classes, open, handleDrawerOpen, addPalette, paletteList} = this.props;
-        var {paletteName, dialogOpen} = this.state;
+        var {dialogOpen} = this.state;
         return (
         
             
@@ -89,7 +87,7 @@ class NewColorPaletteNav extends Component {
             </Button>
 
         </div>    
-
+        
           </AppBar>
         
         )

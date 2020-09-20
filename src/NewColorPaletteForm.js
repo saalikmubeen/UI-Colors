@@ -127,10 +127,10 @@ class NewColorPaletteForm extends Component {
       }
   }
 
-  async addPalette(paletteName){
+  async addPalette(paletteName, emoji){
       var id = paletteName.toLowerCase().replace(/ /g, "-");
       var colors = this.state.colors;
-      var newPalette = {paletteName: paletteName, id: id, colors: colors, emoji: ""};
+      var newPalette = {paletteName: paletteName, id: id, colors: colors, emoji: emoji};
 
        await this.props.addPalette(newPalette);
        this.props.history.push("/");
