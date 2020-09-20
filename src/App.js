@@ -12,9 +12,12 @@ class App extends Component{
     constructor(props){
       super(props);
       this.state = {
-          paletteList: seedColors
+          paletteList: JSON.parse(window.localStorage.getItem("paletteList")) || seedColors
       }
+
       this.addPalette = this.addPalette.bind(this);
+      this.searchPalette = this.searchPalette.bind(this);
+      this.syncLocalStorage = this.syncLocalStorage.bind(this);
     }
   
   searchPalette(paletteId){
@@ -25,8 +28,12 @@ class App extends Component{
 
   addPalette(newPalette){
     this.setState({paletteList: [...this.state.paletteList, newPalette]}, function(){
-          console.log(this.state.paletteList)
+          this.syncLocalStorage();
     });
+  }
+
+  syncLocalStorage(){
+    window.localStorage.setItem("paletteList", JSON.stringify(this.state.paletteList));
   }
 
   render(){
