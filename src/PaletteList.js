@@ -43,7 +43,7 @@ var styles = {
 
 class PaletteList extends Component {
     render() {
-        var {paletteList, classes, history} = this.props; 
+        var {paletteList, classes, history, deletePalette} = this.props; 
         
         return (
             <div className={classes.root}>
@@ -54,7 +54,7 @@ class PaletteList extends Component {
                   </nav>
                   <div className={classes.miniPalettes}>
                        {paletteList.map(function(palette){
-                          return <MiniPalette {...palette} key={palette.paletteName} history={history}/>
+                          return <MiniPalette {...palette} key={palette.paletteName} history={history} deletePalette={deletePalette}/>
                        })}
                   </div>
              </div>

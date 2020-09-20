@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
-
+import DeleteIcon from '@material-ui/icons/Delete';
 
 var styles = {
       root: {
@@ -9,8 +9,9 @@ var styles = {
           padding: "0.5rem",
           position: "relative",
           overflow: "hidden",
-          "&:hover": {
-              cursor: "pointer"
+          cursor: "pointer",
+          "&:hover svg": {
+              opacity: "1"
           }
       },
 
@@ -45,6 +46,19 @@ var styles = {
           margin: "0 auto",
           position: "relative",
           marginBottom: "-4px"
+      },
+
+      deletePaletteBtn: {
+          position: "absolute",
+          top: "0",
+          right: "0",
+          backgroundColor: "#eb3d30",
+          color: "white",
+          height: "20px",
+          width: "20px",
+          padding: "10px",
+          zIndex: "3",
+          opacity: "0"
       }
 
 }
@@ -55,10 +69,18 @@ class MiniPalette extends Component {
         this.props.history.push(`/palette/${this.props.id}`);
     }
 
+    deletePalette = (evt) => {
+        evt.stopPropagation();
+        this.props.deletePalette(this.props.id);
+    }
+
     render() {
         var {classes, colors, emoji, paletteName} = this.props
         return (
             <div className={classes.root} onClick={this.handleClick}>
+
+                <DeleteIcon className={classes.deletePaletteBtn} style={{transition: "all 0.3s ease-in-out"}} onClick={this.deletePalette}/>
+
                 <div className={classes.paletteColors}>
                     {colors.map(function(color){
                         return <div className={classes.miniBox} style={{backgroundColor: color.color}} key={color.name} />
