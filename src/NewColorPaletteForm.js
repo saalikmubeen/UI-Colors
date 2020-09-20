@@ -6,10 +6,8 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import Button from '@material-ui/core/Button';
-import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 import arrayMove from 'array-move';
 import DraggableColorList from "./DraggableColorList";
 import NewColorPaletteNav from "./NewColorPaletteNav";
@@ -25,7 +23,10 @@ const styles = theme => ({
     transition: theme.transitions.create(["margin", "width"], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen
-    })
+    }),
+    flexDirection: "row",
+    justifyContent: "space-between",
+    height: "64px"
   },
   appBarShift: {
     width: `calc(100% - ${drawerWidth}px)`,
@@ -38,9 +39,6 @@ const styles = theme => ({
   menuButton: {
     marginLeft: 12,
     marginRight: 20
-  },
-  hide: {
-    display: "none"
   },
   drawer: {
     width: drawerWidth,
@@ -161,7 +159,7 @@ class NewColorPaletteForm extends Component {
       <div className={classes.root}>
         
         <CssBaseline/>
-        <NewColorPaletteNav addPalette={this.addPalette} colors={colors} paletteList={paletteList} handleDrawerOpen={this.handleDrawerOpen} classes={classes} open={open}/>
+        <NewColorPaletteNav addPalette={this.addPalette} colors={colors} paletteList={paletteList} handleDrawerOpen={this.handleDrawerOpen} open={open} classes={classes}/>
 
         <Drawer
           className={classes.drawer}
