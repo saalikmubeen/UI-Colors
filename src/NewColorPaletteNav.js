@@ -9,6 +9,7 @@ import Button from '@material-ui/core/Button';
 import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 import {Link} from "react-router-dom";
 import {withStyles, withTheme} from "@material-ui/styles";
+import NewColorPaletteDialog from "./NewColorPaletteDialog";
 
 const styles = {
     navButtons: {
@@ -16,10 +17,6 @@ const styles = {
         alignItems: "center"
     }
 }
-
-
-
-  
 
 
 class NewColorPaletteNav extends Component {
@@ -35,17 +32,17 @@ class NewColorPaletteNav extends Component {
         this.setState({[evt.target.name]: evt.target.value})
     }
 
-    componentDidMount(){
+    // componentDidMount(){
       
-        ValidatorForm.addValidationRule('isPaletteNameUnique', (value) => {
-            return this.props.paletteList.every((palette) => {
-                return palette.paletteName !== value.toLowerCase();
-            })
-        });
-    }
+    //     ValidatorForm.addValidationRule('isPaletteNameUnique', (value) => {
+    //         return this.props.paletteList.every((palette) => {
+    //             return palette.paletteName !== value.toLowerCase();
+    //         })
+    //     });
+    // }
 
     render() {
-        var {classes, open, handleDrawerOpen, addPalette} = this.props;
+        var {classes, open, handleDrawerOpen, addPalette, paletteList} = this.props;
         var {paletteName} = this.state;
         return (
         
@@ -73,22 +70,8 @@ class NewColorPaletteNav extends Component {
           </Toolbar>
 
         <div className={classes.navButtons}>
-          <ValidatorForm
-                ref="form"
-                onSubmit={() => addPalette(paletteName)}
-                onError={errors => console.log(errors)}
-            >
-            <TextValidator
-                label="Palette Name"
-                onChange={this.handleTextChange}
-                name="paletteName"
-                value={paletteName}
-                    validators={['required', 'isPaletteNameUnique']}
-                errorMessages={['this field is required', 'Palette with that name already exists']}
-            />
-                 <Button variant="contained" color="primary" 
-                    type="submit">SAVE PALETTE</Button>
-            </ValidatorForm>
+
+            <NewColorPaletteDialog paletteList={paletteList} addPalette={addPalette}/>
 
             <Button variant="contained" color="secondary">
                  <Link to="/">Go Back</Link>
