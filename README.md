@@ -18,7 +18,9 @@ Libraries and packages used:
         "react-router-dom",
         "react-scripts,
         "react-sortable-hoc", 
-        "react-transition-group"
+        "react-transition-group".
+        
+ Inspired by Flat UI Colors: https://flatuicolors.com/
 
 ## Available Scripts
 
