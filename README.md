@@ -1,4 +1,24 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Libraries and packages used: 
+         @material-ui/core",
+        "@material-ui/icons",
+        "@material-ui/styles" 
+        "@testing-library/jest-dom",
+        "@testing-library/react",
+        "@testing-library/user-event",
+        "array-move",
+        "chroma-js",
+        "emoji-mart",
+        "rc-slider",
+        "react",
+        "react-color", 
+        "react-copy-to-clipboard",
+        "react-dom",
+        "react-material-ui-form-validator",
+        "react-router-dom",
+        "react-scripts,
+        "react-sortable-hoc", 
+        "react-transition-group"
 
 ## Available Scripts
 
