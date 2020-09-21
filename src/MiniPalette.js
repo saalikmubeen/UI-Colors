@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import DeleteIcon from '@material-ui/icons/Delete';
 
@@ -63,7 +63,7 @@ var styles = {
 
 }
 
-class MiniPalette extends Component {
+class MiniPalette extends PureComponent {
 
     handleClick= () => {
         this.props.history.push(`/palette/${this.props.id}`);
@@ -77,6 +77,7 @@ class MiniPalette extends Component {
 
     render() {
         var {classes, colors, emoji, paletteName} = this.props
+        
         return (
             <div className={classes.root} onClick={this.handleClick}>
 
