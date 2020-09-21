@@ -20,6 +20,7 @@ Libraries and packages used:
         "react-sortable-hoc", 
         "react-transition-group".
         
+  View : https://flatcolorsui.netlify.app/
  Inspired by Flat UI Colors: https://flatuicolors.com/
 
 ## Available Scripts
