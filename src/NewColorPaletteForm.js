@@ -128,12 +128,18 @@ class NewColorPaletteForm extends Component {
      var allColors = this.props.paletteList.map(function(palette){
           return palette.colors;
      }).flat();
-      var randIdx = Math.floor(Math.random() * allColors.length);
-      var randColor = allColors[randIdx];
+      
+      var randColor = allColors[Math.floor(Math.random() * allColors.length)];
 
-      if (this.state.colors.length < this.props.maxColors){
-        this.setState({colors: [...this.state.colors, randColor]});
+      var colorNames = this.state.colors.map(function(color){
+            return color.name;
+      })
+
+      while(colorNames.includes(randColor.name)){
+        randColor = allColors[Math.floor(Math.random() * allColors.length)];
       }
+
+      this.setState({colors: [...this.state.colors, randColor]});
   }
 
   clearPalette(){

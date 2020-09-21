@@ -21,15 +21,27 @@
     color: black;
 }
 
+@media screen and (max-width: 576px) {
+    .logo a {
+        font-size: 1rem;
+    }
+}
+
 .slider {
     width: 340px;
     margin: 0 10px;
     display: inline-block;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 768px) {
     .slider {
         width: 150px
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .slider {
+        width: 110px
     }
 }
 

@@ -51,6 +51,9 @@ class App extends Component{
           <Route exact path="/palette/new" render={(routeProps) => <NewColorPaletteForm addPalette={this.addPalette} paletteList={paletteList} {...routeProps}/>}/>
           <Route exact path="/palette/:id" render={(routeProps) => <Palette palette={generateColorPalette(this.searchPalette(routeProps.match.params.id))}/>}/>
           <Route exact path="/palette/:paletteId/:colorId" render={(routeProps) => <SingleColorPalette palette={generateColorPalette(this.searchPalette(routeProps.match.params.paletteId))} {...routeProps}/>}/>
+
+          <Route render={(routeProps) => <PaletteList paletteList={paletteList} deletePalette={this.deletePalette} {...routeProps}/>}/>
+
         </Switch>
     )
   }

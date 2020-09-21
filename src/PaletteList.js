@@ -118,7 +118,7 @@ class PaletteList extends Component {
 
 
     render() {
-        var {paletteList, classes, history, deletePalette} = this.props; 
+        var {paletteList, classes, history} = this.props; 
         var {open} = this.state;
 
         return (
