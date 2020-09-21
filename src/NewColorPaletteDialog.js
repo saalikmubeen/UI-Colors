@@ -47,6 +47,7 @@ class NewColorPaletteDialog extends Component {
     // adds emoji and saves the palette
     addEmoji(emoji){
         this.props.addPalette(this.state.paletteName, emoji.native);
+        this.handleClose();
     }
 
     componentDidMount(){
