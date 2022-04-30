@@ -2,10 +2,9 @@
 
         
 # UI Colors 
+## For designers and frontend developers, to make their life a little easy while choosing between different shades of colors. 
 
-### For designers and frontend developers, to make their life a little easy while choosing between different shades of colors. 
-
-[Demo](https://flatcolorsui.netlify.app/)
+# [Demo](https://flatcolorsui.netlify.app/)
 
 - A combined clone of websites; [Flat UI Colors](https://flatuicolors.com/) and [Material UI Colors](http://materialuicolors.co/?utm_source=launchers).
 
